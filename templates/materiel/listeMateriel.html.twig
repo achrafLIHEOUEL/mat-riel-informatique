@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Matériels{% endblock %}
+
+{% block body %}
+    <h1 class="mb-4">💻 Liste des Matériels</h1>
+
+    {% if materiels is empty %}
+        <div class="alert alert-warning">Aucun matériel trouvé.</div>
+    {% else %}
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Type</th>
+                    <th>Marque</th>
+                    <th>Modele</th>
+                    <th>Numero de Serie</th>
+                    <th>État</th>
+                    <th>Date d'acquisition</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for materiel in materiels %}
+                    <tr>
+                        <td>{{ materiel.type }}</td>
+                        <td>{{ materiel.marque }}</td>
+                        <td>{{ materiel.modele }}</td>
+                        <td>{{ materiel.numeroSerie }}</td>
+                        <td>{{ materiel.etat }}</td>
+                        <td>{{ materiel.dateAcquisition|date('d/m/Y') }}</td>
+                        <td><a href="{{ path('app_modifier_materiel', {'id': materiel.id}) }}" class="btn btn-warning btn-sm">  ✏️ Modifier</a>
+                        <form method="post" action="{{ path('app_supprimer_materiel', {'id': materiel.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce matériel ?');">
+                          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ materiel.id) }}">
+                            <button class="btn btn-danger btn-sm">🗑️ Supprimer</button>
+                        </form>
+                        
+                        </td>
+    
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
