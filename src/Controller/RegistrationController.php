@@ -28,8 +28,11 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
+        
+
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles($form->get('roles')->getData());
             /** @var string $plainPassword */
             $plainPassword = $form->get('plainPassword')->getData();
 
