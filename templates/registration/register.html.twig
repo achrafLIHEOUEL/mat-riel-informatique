@@ -1,28 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow p-4" style="width: 100%; max-width: 600px;">
+        <h1 class="h3 mb-4 text-center">📝 Créer un compte</h1>
 
-    <h1>Register</h1>
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger text-center" role="alert">
+                {{ flash_error }}
+            </div>
+        {% endfor %}
 
-    {{ form_errors(registrationForm) }}
+        {{ form_start(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.nom) }}
-    {{ form_row(registrationForm.prenom) }}
-    {{ form_row(registrationForm.numeroTel) }}
+        <div class="mb-3 row">
+            <label class="col-sm-4 col-form-label">Nom</label>
+            <div class="col-sm-8">
+                {{ form_widget(registrationForm.nom, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
 
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-            
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        <div class="mb-3 row">
+            <label class="col-sm-4 col-form-label">Prénom</label>
+            <div class="col-sm-8">
+                {{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        <div class="mb-3 row">
+            <label class="col-sm-4 col-form-label">Téléphone</label>
+            <div class="col-sm-8">
+                {{ form_widget(registrationForm.numeroTel, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="col-sm-4 col-form-label">Email</label>
+            <div class="col-sm-8">
+                {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="col-sm-4 col-form-label">Mot de passe</label>
+            <div class="col-sm-8">
+                {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="offset-sm-4 col-sm-8">
+                {{ form_row(registrationForm.agreeTerms) }}
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
+        </div>
+
+        {{ form_end(registrationForm) }}
+
+        <div class="text-center mt-3">
+            <a href="{{ path('app_login') }}">Déjà un compte ? Connexion</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
