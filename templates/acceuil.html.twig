@@ -1,12 +1,101 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des employées{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+{% endblock %}
+
+{% block title %}Tableau de Bord Utilisateur{% endblock %}
 
 {% block body %}
-    
-    <h1 style="font-size: 60px; text-align: center; color: #ffffff; background-color: #72787eff; padding: 100px; border-radius: 15px;">
-    👋 Bienvenue sur Parc Info
-</h1>
-     
-   
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-header">Stocks</div>
+            <div class="card-body">
+                <h5 class="card-title">Matériels informatique</h5>
+                <p class="card-text">Gérez les stocks et les emplacements des matériels.</p>
+                <a href="{{ path('app_materiels') }}" class="btn btn-light btn-sm">Voir</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-header">Affectations</div>
+            <div class="card-body">
+                <h5 class="card-title">Affectations</h5>
+                <p class="card-text">Suivez l’attribution des matériels aux employés.</p>
+                <a href="#" class="btn btn-light btn-sm">Voir</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white bg-danger mb-3">
+            <div class="card-header">Alertes</div>
+            <div class="card-body">
+                <h5 class="card-title">Alertes</h5>
+                <p class="card-text">Visualisez les alertes liées aux équipements ou stocks.</p>
+                <a href="#" class="btn btn-light btn-sm">Voir</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-header">Services</div>
+            <div class="card-body">
+                <h5 class="card-title">Services internes</h5>
+                <p class="card-text">Consultez les services liés à la gestion informatique.</p>
+                <a href="#" class="btn btn-light btn-sm">Voir</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-header">Interventions</div>
+            <div class="card-body">
+                <h5 class="card-title">Interventions techniques</h5>
+                <p class="card-text">Gérez les interventions sur les matériels ou logiciels.</p>
+                <a href="#" class="btn btn-light btn-sm">Voir</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white bg-secondary mb-3">
+            <div class="card-header">Réclamations</div>
+            <div class="card-body">
+                <h5 class="card-title">Suivi des réclamations</h5>
+                <p class="card-text">Soumettez et consultez les réclamations des utilisateurs.</p>
+                <a href="#" class="btn btn-light btn-sm">Voir</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                matériels disponibles
+            </div>
+            <div class="card-body text-center">
+                <canvas id="stockChart" width="300" height="300"></canvas>
+            </div>
+        </div>  
+    </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ asset('js/chart.js') }}"></script>
+
+
 {% endblock %}
