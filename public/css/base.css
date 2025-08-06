@@ -1,0 +1,59 @@
+body {
+    padding-top: 70px; /* Ajuste la valeur si ta navbar est plus haute ou plus basse */
+  }
+  .nav-link {
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link-underline {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #f8f9fa;
+    transition: width 0.3s ease;
+  }
+  
+  .nav-link:hover .nav-link-underline {
+    width: 60%;
+  }
+  
+  .btn-hover-effect {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border-width: 2px;
+  }
+  
+  .btn-hover-effect span {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .btn-hover-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+  }
+  
+  .btn-hover-effect:hover::before {
+    left: 0;
+  }
+  
+  .navbar {
+    transition: all 0.3s ease;
+    padding: 15px 0;
+  }
+  
+  .navbar.scrolled {
+    padding: 10px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }

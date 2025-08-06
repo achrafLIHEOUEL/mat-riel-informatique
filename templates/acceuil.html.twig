@@ -7,7 +7,7 @@
 {% block title %}Tableau de Bord Utilisateur{% endblock %}
 
 {% block body %}
-<div class="row">
+<div class="row mt-5 pt-5">
 
     <div class="col-md-4">
         <div class="card text-white bg-success mb-3">
@@ -26,7 +26,7 @@
             <div class="card-body">
                 <h5 class="card-title">Affectations</h5>
                 <p class="card-text">Suivez l’attribution des matériels aux employés.</p>
-                <a href="#" class="btn btn-light btn-sm">Voir</a>
+                <a href="{{ path('app_affectation') }}" class="btn btn-light btn-sm">Voir</a>
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
             <div class="card-body">
                 <h5 class="card-title">Alertes</h5>
                 <p class="card-text">Visualisez les alertes liées aux équipements ou stocks.</p>
-                <a href="#" class="btn btn-light btn-sm">Voir</a>
+                <a href="{{ path('app_alerte') }}" class="btn btn-light btn-sm">Voir</a>
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@
             <div class="card-body">
                 <h5 class="card-title">Interventions techniques</h5>
                 <p class="card-text">Gérez les interventions sur les matériels ou logiciels.</p>
-                <a href="#" class="btn btn-light btn-sm">Voir</a>
+                <a href="{{ path('app_intervention') }}" class="btn btn-light btn-sm">Voir</a>
             </div>
         </div>
     </div>
@@ -73,7 +73,7 @@
             <div class="card-body">
                 <h5 class="card-title">Suivi des réclamations</h5>
                 <p class="card-text">Soumettez et consultez les réclamations des utilisateurs.</p>
-                <a href="#" class="btn btn-light btn-sm">Voir</a>
+                <a href="{{ path('app_reclamation') }}" class="btn btn-light btn-sm">Voir</a>
             </div>
         </div>
     </div>
