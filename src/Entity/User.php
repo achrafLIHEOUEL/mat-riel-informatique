@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -44,6 +46,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?int $numeroTel = null;
+
+    /**
+     * @var Collection<int, Materiel>
+     */
+    #[ORM\ManyToMany(targetEntity: Materiel::class, inversedBy: 'users')]
+    private Collection $Materiel;
+
+    /**
+     * @var Collection<int, Affectation>
+     */
+    #[ORM\OneToMany(targetEntity: Affectation::class, mappedBy: 'User')]
+    private Collection $affectations;
+
+    public function __construct()
+    {
+        $this->Materiel = new ArrayCollection();
+        $this->affectations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -159,6 +179,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setNumeroTel(int $numeroTel): static
     {
         $this->numeroTel = $numeroTel;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Materiel>
+     */
+    public function getMateriel(): Collection
+    {
+        return $this->Materiel;
+    }
+
+    public function addMateriel(Materiel $materiel): static
+    {
+        if (!$this->Materiel->contains($materiel)) {
+            $this->Materiel->add($materiel);
+        }
+
+        return $this;
+    }
+
+    public function removeMateriel(Materiel $materiel): static
+    {
+        $this->Materiel->removeElement($materiel);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Affectation>
+     */
+    public function getAffectations(): Collection
+    {
+        return $this->affectations;
+    }
+
+    public function addAffectation(Affectation $affectation): static
+    {
+        if (!$this->affectations->contains($affectation)) {
+            $this->affectations->add($affectation);
+            $affectation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAffectation(Affectation $affectation): static
+    {
+        if ($this->affectations->removeElement($affectation)) {
+            // set the owning side to null (unless already changed)
+            if ($affectation->getUser() === $this) {
+                $affectation->setUser(null);
+            }
+        }
 
         return $this;
     }

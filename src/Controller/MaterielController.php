@@ -39,7 +39,7 @@ final class MaterielController extends AbstractController
     }
 
     #[Route('/materiels', name: 'app_materiels')]
-public function index(MaterielRepository $materielRepository): Response
+public function materiels(MaterielRepository $materielRepository): Response
 {
 
 $materiels = $materielRepository -> findall();
