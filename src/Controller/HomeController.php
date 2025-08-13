@@ -21,13 +21,6 @@ class HomeController extends AbstractController
         return $this->render('utilisateur/profile.html.twig');
     }
 
-
-    #[Route('/intervention', name: 'app_intervention')]
-    public function intervention(): Response
-    {
-        return $this->render('intervention/listeIntervention.html.twig');
-    }
-
     #[Route('/reclamation', name: 'app_reclamation')]
     public function reclamation(): Response
     {

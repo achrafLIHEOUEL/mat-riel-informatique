@@ -5,6 +5,9 @@
 {% block body %}
 <div class="container mt-5">
     <h2 class="mb-4">🛠️ les interventions</h2>
+    {% if interventions is empty %}
+        <div class="alert alert-warning">Aucune affectation trouvée.</div>
+    {% else %}
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
@@ -12,19 +15,32 @@
                 <th>description</th>
                 <th>date intervention</th>
                 <th>effectue_par</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-        
+        {% for intervention in interventions %}
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                </td>
+                <td>{{ intervention.typeIntervention }}</td>
+                <td>{{ intervention.description }}</td>
+                <td>{{ intervention.dateIntervention|date('d/m/Y') }}</td>
+                <td>{{ intervention.effectuePar }}</td>
+                <td><a href="{{ path('app_modifier_intervention', {'id': intervention.id}) }}" class="btn btn-warning btn-sm">✏️ Modifier</a>
+                        <form method="post" action="{{ path('app_supprimer_intervention', {'id': intervention.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet intervention ?');">
+                          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ intervention.id) }}">
+                            <button class="btn btn-danger btn-sm">🗑️ Supprimer</button>
+                        </form>
+                        
+                        </td>
+
             </tr>
+            {% endfor %}
        
         </tbody>
     </table>
+    {% endif %}
+    <a href="{{ path('app_ajouter_intervention') }}" class="btn btn-primary">
+    ➕ Ajouter une intervention
+</a>
 </div>
 {% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau intervention{% endblock %}
+
+{% block body %}
+<div class="card shadow-sm bg-dark text-white">
+    <h2 class="mb-4 text-center">Ajouter un nouveau intervention</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            {{ form_start(form) }}
+
+                <div class="mb-3">
+                    {{ form_label(form.typeIntervention) }}
+                    {{ form_widget(form.typeIntervention, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.typeIntervention) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.description) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.date_intervention) }}
+                    {{ form_widget(form.date_intervention, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.date_intervention) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.effectue_par) }}
+                    {{ form_widget(form.effectue_par, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.effectue_par) }}
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
