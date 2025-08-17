@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Les interventions{% endblock %}
 
@@ -6,11 +6,12 @@
 <div class="container mt-5">
     <h2 class="mb-4">🛠️ les interventions</h2>
     {% if interventions is empty %}
-        <div class="alert alert-warning">Aucune affectation trouvée.</div>
+        <div class="alert alert-warning">Aucune intervention trouvée.</div>
     {% else %}
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
+            
                 <th>type Intervention</th>
                 <th>description</th>
                 <th>date intervention</th>
@@ -25,10 +26,10 @@
                 <td>{{ intervention.description }}</td>
                 <td>{{ intervention.dateIntervention|date('d/m/Y') }}</td>
                 <td>{{ intervention.effectuePar }}</td>
-                <td><a href="{{ path('app_modifier_intervention', {'id': intervention.id}) }}" class="btn btn-warning btn-sm">✏️ Modifier</a>
+                <td><a href="{{ path('app_modifier_intervention', {'id': intervention.id}) }}" class="btn btn-warning btn-sm"> Modifier</a>
                         <form method="post" action="{{ path('app_supprimer_intervention', {'id': intervention.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet intervention ?');">
                           <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ intervention.id) }}">
-                            <button class="btn btn-danger btn-sm">🗑️ Supprimer</button>
+                            <button class="btn btn-danger btn-sm"> Supprimer</button>
                         </form>
                         
                         </td>
@@ -40,7 +41,7 @@
     </table>
     {% endif %}
     <a href="{{ path('app_ajouter_intervention') }}" class="btn btn-primary">
-    ➕ Ajouter une intervention
+    Ajouter une intervention
 </a>
 </div>
 {% endblock %}

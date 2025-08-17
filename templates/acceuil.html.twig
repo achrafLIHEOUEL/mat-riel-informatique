@@ -1,21 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-{% endblock %}
-
-{% block title %}Tableau de Bord Utilisateur{% endblock %}
+{% block title %}Acceuil{% endblock %}
 
 {% block body %}
 <div class="row mt-5 pt-5">
 
     <div class="col-md-4">
         <div class="card text-white bg-success mb-3">
-            <div class="card-header">Stocks</div>
+            <div class="card-header">Matériels disponible</div>
             <div class="card-body">
                 <h5 class="card-title">Matériels informatique</h5>
-                <p class="card-text">Gérez les stocks et les emplacements des matériels.</p>
-                <a href="{{ path('app_materiels') }}" class="btn btn-light btn-sm">Voir</a>
+                <p class="card-text">Consulter les équipements disponible.</p>
+                <a href="{{ path('app_user_materiels') }}" class="btn btn-light btn-sm">Voir</a>
             </div>
         </div>
     </div>
@@ -26,7 +22,7 @@
             <div class="card-body">
                 <h5 class="card-title">Affectations</h5>
                 <p class="card-text">Suivez l’attribution des matériels aux employés.</p>
-                <a href="{{ path('app_affectation') }}" class="btn btn-light btn-sm">Voir</a>
+                <a href="{{ path('app_affectation_user') }}" class="btn btn-light btn-sm">Voir</a>
             </div>
         </div>
     </div>
@@ -37,7 +33,7 @@
             <div class="card-body">
                 <h5 class="card-title">Alertes</h5>
                 <p class="card-text">Visualisez les alertes liées aux équipements ou stocks.</p>
-                <a href="{{ path('app_alerte') }}" class="btn btn-light btn-sm">Voir</a>
+                <a href="{{ path('app_ajouter_alerte_user') }}"  class="btn btn-light btn-sm">Voir</a>
             </div>
         </div>
     </div>
@@ -62,9 +58,9 @@
             <div class="card-body">
                 <h5 class="card-title">Interventions techniques</h5>
                 <p class="card-text">Gérez les interventions sur les matériels ou logiciels.</p>
-                <a href="{{ path('app_interventions') }}" class="btn btn-light btn-sm">Voir</a>
+                <a  class="btn btn-light btn-sm">Voir</a>
             </div>
-        </div>²
+        </div>
     </div>
 
     <div class="col-md-4">
@@ -73,7 +69,7 @@
             <div class="card-body">
                 <h5 class="card-title">Suivi des réclamations</h5>
                 <p class="card-text">Soumettez et consultez les réclamations des utilisateurs.</p>
-                <a href="{{ path('app_reclamation') }}" class="btn btn-light btn-sm">Voir</a>
+                <a href="{{ path('app_ajouter_reclamation_user') }}" class="btn btn-light btn-sm">Voir</a>
             </div>
         </div>
     </div>

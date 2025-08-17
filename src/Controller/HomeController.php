@@ -21,10 +21,14 @@ class HomeController extends AbstractController
         return $this->render('utilisateur/profile.html.twig');
     }
 
-    #[Route('/reclamation', name: 'app_reclamation')]
-    public function reclamation(): Response
+    #[Route('/dashboard', name: 'app_dashboard')]
+    public function nav(): Response
     {
-        return $this->render('reclamation/listeReclamation.html.twig');
+        return $this->render('dashboard.html.twig');
     }
+
+   
+
+   
 }
 

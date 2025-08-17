@@ -1,0 +1,45 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}modifier une alerte{% endblock %}
+
+{% block body %}
+<div class="card shadow-sm bg-dark text-white">
+    <h2 class="mb-4 text-center">modifier une alerte</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            {{ form_start(form) }}
+
+                <div class="mb-3">
+                    {{ form_label(form.type) }}
+                    {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.type) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.message) }}
+                    {{ form_widget(form.message, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.message) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.date_alerte) }}
+                    {{ form_widget(form.date_alerte, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.date_alerte) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.statut) }}
+                    {{ form_widget(form.statut, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.statut) }}
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">modifier</button>
+                </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

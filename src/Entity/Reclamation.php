@@ -26,6 +26,9 @@ class Reclamation
     #[ORM\Column(length: 255)]
     private ?string $statut = null;
 
+    #[ORM\ManyToOne(inversedBy: 'Reclamation')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Reclamation
     public function setStatut(string $statut): static
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

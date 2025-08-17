@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Les affectations{% endblock %}
 
 {% block body %}
-<div class="container mt-5">
+<div class="main">
     <h2 class="mb-4">📦 Les affectations de matériel</h2>
 
     {% if affectations is empty %}
@@ -37,10 +37,10 @@
                         </td>
 
                          <td>
-                         <a href="{{ path('app_modifier_affectation', {'id': affectation.id}) }}" class="btn btn-warning btn-sm">✏️ Modifier</a>
+                         <a href="{{ path('app_modifier_affectation', {'id': affectation.id}) }}" class="btn btn-warning btn-sm"> Modifier</a>
                             <form method="post" action="{{ path('app_supprimer_affectation', {'id': affectation.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet affectation ?');">
                           <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ affectation.id) }}">
-                            <button class="btn btn-danger btn-sm">🗑️ Supprimer</button>
+                            <button class="btn btn-danger btn-sm"> Supprimer</button>
                         </form>
                         </td>
 
@@ -49,5 +49,8 @@
             </tbody>
         </table>
     {% endif %}
+     <a href="{{ path('app_new_affectation') }}" class="btn btn-primary">
+    Ajouter une affectation
+</a>
 </div>
 {% endblock %}

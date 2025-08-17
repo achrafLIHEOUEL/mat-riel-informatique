@@ -1,16 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Modifier une affectation{% endblock %}
+{% block title %}Nouvelle Affectation{% endblock %}
 
 {% block body %}
-<div class="container mt-5">
+<div class="main">
     <h2>🛠️ Affecter un matériel à un employé</h2>
     {{ form_start(form) }}
         {{ form_row(form.User) }}
         {{ form_row(form.Materiel) }}
         {{ form_row(form.date_affectation) }}
         {{ form_row(form.date_retour) }}
-        <button class="btn btn-success mt-3">Modifier</button>
+        <button class="btn btn-success mt-3">Affecter</button>
     {{ form_end(form) }}
 </div>
 {% endblock %}

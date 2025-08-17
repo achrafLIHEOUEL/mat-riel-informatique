@@ -13,16 +13,17 @@ use App\Repository\AlerteRepository;
 
 final class AlerteController extends AbstractController
 {
-    #[Route('/alerte', name: 'app_alerte')]
+    #[Route('/admin/alerte', name: 'app_alerte')]
     public function alerte(AlerteRepository $alerteRepository): Response
     {
         $alertes = $alerteRepository -> findall();
-        return $this->render('alerte/listeAlerte.html.twig',[
+        return $this->render('alerte/admin/listeAlerte.html.twig',[
             "alertes" => $alertes,
         ]);
     }
 
-    #[Route('/ajouteralerte', name: 'app_ajouter_alerte')]
+
+    #[Route('/admin/ajouteralerte', name: 'app_ajouter_alerte')]
     public function nouveauAlerte(Request $request, EntityManagerInterface $entityManager): Response
     {
       $alerte = new Alerte();
@@ -39,7 +40,30 @@ final class AlerteController extends AbstractController
 
 
 
-        return $this->render('alerte/alerteForm.html.twig', [
+        return $this->render('alerte/admin/alerteForm.html.twig', [
+            'controller_name' => 'AlerteController',
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/ajouteralerte', name: 'app_ajouter_alerte_user')]
+    public function nouveauAlerteUser(Request $request, EntityManagerInterface $entityManager): Response
+    {
+      $alerte = new Alerte();
+      $form = $this->createForm(AlerteFormType::class, $alerte);
+      $form->handleRequest($request);
+      if ($form->isSubmitted() && $form->isValid()) {
+           
+            $entityManager->persist($alerte);
+            $entityManager->flush();
+
+    
+            return $this->redirectToRoute('app_alerte');
+        }
+
+
+
+        return $this->render('alerte/alerteFormUser.html.twig', [
             'controller_name' => 'AlerteController',
             'form' => $form->createView(),
         ]);
@@ -57,7 +81,7 @@ public function modifier (Request $request, Alerte $alerte, EntityManagerInterfa
         return $this->redirectToRoute('app_alerte'); 
     }
 
-    return $this->render('alerte/editAlerte.html.twig', [
+    return $this->render('alerte/admin/editAlerte.html.twig', [
         'form' => $form->createView(),
         'editMode' => true
     ]);

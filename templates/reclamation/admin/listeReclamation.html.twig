@@ -1,0 +1,50 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Les réclamations{% endblock %}
+
+{% block body %}
+<div class="container mt-5 pt-5">
+    <h2 class="mb-4">📢 Les réclamations</h2>
+
+     {% if reclamations is empty %}
+        <div class="alert alert-warning">Aucune reclamation trouvée.</div>
+    {% else %}
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Employé</th>
+                <th>objet</th>
+                <th>message</th>
+                <th>date_reclamation</th>
+                <th>statut</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.user.nom ?? 'Utilisateur inconnu' }}</td>
+                <td>{{ reclamation.objet }}</td>
+                <td>{{ reclamation.message }}</td>
+                <td>{{ reclamation.dateReclamation|date('d/m/Y') }}</td>
+                <td>{{ reclamation.statut }}</td>
+                <td><a href="{{ path('app_modifier_reclamation', {'id': reclamation.id}) }}" class="btn btn-warning btn-sm"> modifier</a>
+                        <form method="post" action="{{ path('app_supprimer_reclamation', {'id': reclamation.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet reclamation ?');">
+                          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reclamation.id) }}">
+                            <button class="btn btn-danger btn-sm"> Supprimer</button>
+                        </form>
+                        
+                        </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+<a href="{{ path('app_ajouter_reclamation') }}" class="btn btn-primary">
+     Ajouter une reclamation
+</a>
+
+{% endblock %}

@@ -15,11 +15,20 @@ use Doctrine\ORM\EntityManagerInterface;
 
 final class AffectationController extends AbstractController
 {
-    #[Route('/affectation', name: 'app_affectation')]
+    #[Route('/admin/affectation', name: 'app_affectation')]
    public function affectations(AffectationRepository $affectationRepository): Response
 {
 $affectations = $affectationRepository -> findall();
-return $this->render('affectation/listeAffectation.html.twig', [
+return $this->render('affectation/admin/listeAffectation.html.twig', [
+        'affectations' => $affectations,
+    ]);
+}
+
+ #[Route('/affectation', name: 'app_affectation_user')]
+   public function Useraffectations(AffectationRepository $affectationRepository): Response
+{
+$affectations = $affectationRepository -> findall();
+return $this->render('affectation/listeAffectationUser.html.twig', [
         'affectations' => $affectations,
     ]);
 }
@@ -40,12 +49,12 @@ return $this->render('affectation/listeAffectation.html.twig', [
             return $this->redirectToRoute('app_new_affectation'); 
         }
 
-        return $this->render('affectation/affectationForm.html.twig', [
+        return $this->render('affectation/admin/affectationForm.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
-#[Route('/materiel/{id}/modifier', name: 'app_modifier_affectation')]
+#[Route('/affectation/{id}/modifier', name: 'app_modifier_affectation')]
 public function modifier (Request $request, Affectation $affectation, EntityManagerInterface $em): Response
 {
     $form = $this->createForm(AffectationFormType::class, $affectation);
@@ -57,7 +66,7 @@ public function modifier (Request $request, Affectation $affectation, EntityMana
         return $this->redirectToRoute('app_affectation'); 
     }
 
-    return $this->render('affectation/editAffectation.html.twig', [
+    return $this->render('affectation/admin/editAffectation.html.twig', [
         'form' => $form->createView(),
         'editMode' => true
     ]);

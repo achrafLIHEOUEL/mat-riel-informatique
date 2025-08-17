@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/listeMateriel.css') }}">
-{% endblock %}
+
 
 {% block title %}Liste des Matériels{% endblock %}
 
@@ -20,7 +18,7 @@
                     <th>Numero de Serie</th>
                     <th>État</th>
                     <th>Date d'acquisition</th>
-                    <th>Action</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -32,12 +30,8 @@
                         <td>{{ materiel.numeroSerie }}</td>
                         <td>{{ materiel.etat }}</td>
                         <td>{{ materiel.dateAcquisition|date('d/m/Y') }}</td>
-                        <td><a href="{{ path('app_modifier_materiel', {'id': materiel.id}) }}" class="btn btn-warning btn-sm">✏️ Modifier</a>
-                        <form method="post" action="{{ path('app_supprimer_materiel', {'id': materiel.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce matériel ?');">
-                          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ materiel.id) }}">
-                            <button class="btn btn-danger btn-sm">🗑️ Supprimer</button>
-                        </form>
                         
+                
                         </td>
     
                     </tr>

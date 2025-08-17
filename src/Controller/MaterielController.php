@@ -15,7 +15,28 @@ use App\Repository\MaterielRepository;
 
 final class MaterielController extends AbstractController
 {
-    #[Route('/ajouterMateriel', name: 'app_materiel')]
+        #[Route('admin/materiels', name: 'app_materiels')]
+public function materiels(MaterielRepository $materielRepository): Response
+{
+
+$materiels = $materielRepository -> findall();
+return $this->render('materiel/admin/listeMateriel.html.twig', [
+        'materiels' => $materiels,
+    ]);
+}
+
+  #[Route('/materiels', name: 'app_user_materiels')]
+public function Usermateriels(MaterielRepository $materielRepository): Response
+{
+
+$materiels = $materielRepository -> findall();
+return $this->render('materiel/UserlisteMateriel.html.twig', [
+        'materiels' => $materiels,
+    ]);
+}
+
+
+    #[Route('admin/ajouterMateriel', name: 'app_ajouter_materiel')]
     public function nouveau(Request $request, EntityManagerInterface $entityManager): Response
     {
       $materiel = new Materiel();
@@ -32,21 +53,13 @@ final class MaterielController extends AbstractController
 
 
 
-        return $this->render('materiel/materielForm.html.twig', [
+        return $this->render('materiel/admin/materielForm.html.twig', [
             'controller_name' => 'MaterielController',
             'form' => $form->createView(),
         ]);
     }
 
-    #[Route('/materiels', name: 'app_materiels')]
-public function materiels(MaterielRepository $materielRepository): Response
-{
 
-$materiels = $materielRepository -> findall();
-return $this->render('materiel/listeMateriel.html.twig', [
-        'materiels' => $materiels,
-    ]);
-}
 
 #[Route('/materiel/{id}/modifier', name: 'app_modifier_materiel')]
 public function modifier (Request $request, Materiel $materiel, EntityManagerInterface $em): Response
@@ -60,7 +73,7 @@ public function modifier (Request $request, Materiel $materiel, EntityManagerInt
         return $this->redirectToRoute('app_materiels'); 
     }
 
-    return $this->render('materiel/editMateriel.html.twig', [
+    return $this->render('materiel/admin/editMateriel.html.twig', [
         'form' => $form->createView(),
         'editMode' => true
     ]);

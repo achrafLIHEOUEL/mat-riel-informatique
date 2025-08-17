@@ -1,0 +1,45 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}modifier reclamation{% endblock %}
+
+{% block body %}
+<div class="card shadow-sm bg-dark text-white">
+    <h2 class="mb-4 text-center">Modifier une reclamation</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            {{ form_start(form) }}
+
+                <div class="mb-3">
+                    {{ form_label(form.objet) }}
+                    {{ form_widget(form.objet, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.objet) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.message) }}
+                    {{ form_widget(form.message, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.message) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.date_reclamation) }}
+                    {{ form_widget(form.date_reclamation, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.date_reclamation) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(form.statut) }}
+                    {{ form_widget(form.statut, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.statut) }}
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Modifier</button>
+                </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,6 +1,5 @@
-{%extends 'base.html.twig'%}
+{%extends 'baseAdmin.html.twig'%}
 {% block title %} les alertes{% endblock %}
-
 
 {% block body %}
 {% if alertes is empty %}
@@ -36,10 +35,10 @@
                         </td>
 
                          <td>
-                         <a href="{{ path('app_modifier_alerte', {'id': alerte.id}) }}" class="btn btn-warning btn-sm">✏️ Modifier</a>
+                         <a href="{{ path('app_modifier_alerte', {'id': alerte.id}) }}" class="btn btn-warning btn-sm"> Modifier</a>
                             <form method="post" action="{{ path('app_supprimer_alerte', {'id': alerte.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet alerte ?');">
                           <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ alerte.id) }}">
-                            <button class="btn btn-danger btn-sm">🗑️ Supprimer</button>
+                            <button class="btn btn-danger btn-sm"> Supprimer</button>
                         </form>
                         </td>
 
@@ -48,7 +47,7 @@
                  </tbody>
     </table>
 <a href="{{ path('app_ajouter_alerte') }}" class="btn btn-primary">
-    ➕ Ajouter une alerte
+    Ajouter une alerte
 </a>
 
     {% endif %}

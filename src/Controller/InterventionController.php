@@ -18,7 +18,7 @@ final class InterventionController extends AbstractController
 public function materiels(InterventionRepository $interventionRepository): Response
 {
 $interventions = $interventionRepository -> findall();
-return $this->render('intervention/listeIntervention.html.twig', [
+return $this->render('intervention/admin/listeIntervention.html.twig', [
         'interventions' => $interventions,
     ]);
 }
@@ -41,7 +41,7 @@ return $this->render('intervention/listeIntervention.html.twig', [
 
 
 
-        return $this->render('intervention/interventionForm.html.twig', [
+        return $this->render('intervention/admin/interventionForm.html.twig', [
             'controller_name' => 'InterventionController',
             'form' => $form->createView(),
         ]);
@@ -60,7 +60,7 @@ public function modifier (Request $request, Intervention $intervention, EntityMa
         return $this->redirectToRoute('app_interventions'); 
     }
 
-    return $this->render('intervention/editIntervention.html.twig', [
+    return $this->render('intervention/admin/editIntervention.html.twig', [
         'form' => $form->createView(),
         'editMode' => true
     ]);
