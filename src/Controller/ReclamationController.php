@@ -14,10 +14,22 @@ use App\Form\ReclamationFormType;
 final class ReclamationController extends AbstractController
 {
     #[Route('/reclamation', name: 'app_reclamations')]
-    public function index(ReclamationRepository $reclamationRepository): Response
+    public function reclamation(ReclamationRepository $reclamationRepository): Response
     {
         $reclamations = $reclamationRepository->findAll();
         return $this->render('reclamation/admin/listeReclamation.html.twig', [
+            'reclamations' => $reclamations,
+        ]);
+    }
+
+
+     #[Route('/mesreclamations', name: 'app_reclamations_user')]
+    public function reclamationUser(ReclamationRepository $reclamationRepository): Response
+    {
+        $user = $this->getUser();
+       $reclamations = $reclamationRepository->findBy(['user' => $user]);
+
+        return $this->render('reclamation/listeReclamationUser.html.twig', [
             'reclamations' => $reclamations,
         ]);
     }
@@ -55,7 +67,7 @@ final class ReclamationController extends AbstractController
             $entityManager->persist($reclamation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_reclamations');
+            return $this->redirectToRoute('app_reclamations_user');
         }
 
         return $this->render('reclamation/reclamationFormUser.html.twig', [

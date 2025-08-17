@@ -25,7 +25,7 @@ return $this->render('materiel/admin/listeMateriel.html.twig', [
     ]);
 }
 
-  #[Route('/materiels', name: 'app_user_materiels')]
+  #[Route('/materiels', name: 'app_materiels_user')]
 public function Usermateriels(MaterielRepository $materielRepository): Response
 {
 

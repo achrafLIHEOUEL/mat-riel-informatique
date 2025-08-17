@@ -7,21 +7,21 @@
 
     <div class="col-md-4">
         <div class="card text-white bg-success mb-3">
-            <div class="card-header">Matériels disponible</div>
+            <div class="card-header"> 💻 Matériels disponible</div>
             <div class="card-body">
                 <h5 class="card-title">Matériels informatique</h5>
                 <p class="card-text">Consulter les équipements disponible.</p>
-                <a href="{{ path('app_user_materiels') }}" class="btn btn-light btn-sm">Voir</a>
+                <a href="{{ path('app_materiels_user') }}" class="btn btn-light btn-sm">Voir</a>
             </div>
         </div>
     </div>
 
     <div class="col-md-4">
         <div class="card text-white bg-warning mb-3">
-            <div class="card-header">Affectations</div>
+            <div class="card-header"> 👤➡️💻 Affectations</div>
             <div class="card-body">
                 <h5 class="card-title">Affectations</h5>
-                <p class="card-text">Suivez l’attribution des matériels aux employés.</p>
+                <p class="card-text"> Les matériels aux employés.</p>
                 <a href="{{ path('app_affectation_user') }}" class="btn btn-light btn-sm">Voir</a>
             </div>
         </div>
@@ -29,11 +29,11 @@
 
     <div class="col-md-4">
         <div class="card text-white bg-danger mb-3">
-            <div class="card-header">Alertes</div>
+            <div class="card-header"> ⚠️ Alertes </div>
             <div class="card-body">
-                <h5 class="card-title">Alertes</h5>
-                <p class="card-text">Visualisez les alertes liées aux équipements ou stocks.</p>
-                <a href="{{ path('app_ajouter_alerte_user') }}"  class="btn btn-light btn-sm">Voir</a>
+                <h5 class="card-title"> Déclarer des alertes </h5>
+                <p class="card-text">Déclarer les alertes liées aux équipements.</p>
+                <a href="{{ path('app_ajouter_alerte_user') }}"  class="btn btn-light btn-sm"> Déclarer une alerte </a>
             </div>
         </div>
     </div>
@@ -43,10 +43,10 @@
 <div class="row">
     <div class="col-md-4">
         <div class="card text-white bg-info mb-3">
-            <div class="card-header">Services</div>
+            <div class="card-header"> 🏢 Services</div>
             <div class="card-body">
                 <h5 class="card-title">Services internes</h5>
-                <p class="card-text">Consultez les services liés à la gestion informatique.</p>
+                <p class="card-text">Consultez les services </p>
                 <a href="#" class="btn btn-light btn-sm">Voir</a>
             </div>
         </div>
@@ -54,10 +54,10 @@
 
     <div class="col-md-4">
         <div class="card text-white bg-dark mb-3">
-            <div class="card-header">Interventions</div>
+            <div class="card-header"> 🛠️ Interventions</div>
             <div class="card-body">
                 <h5 class="card-title">Interventions techniques</h5>
-                <p class="card-text">Gérez les interventions sur les matériels ou logiciels.</p>
+                <p class="card-text"> les interventions sur les matériels ou logiciels.</p>
                 <a  class="btn btn-light btn-sm">Voir</a>
             </div>
         </div>
@@ -65,33 +65,16 @@
 
     <div class="col-md-4">
         <div class="card text-white bg-secondary mb-3">
-            <div class="card-header">Réclamations</div>
+            <div class="card-header"> 📢 Réclamations</div>
             <div class="card-body">
-                <h5 class="card-title">Suivi des réclamations</h5>
-                <p class="card-text">Soumettez et consultez les réclamations des utilisateurs.</p>
-                <a href="{{ path('app_ajouter_reclamation_user') }}" class="btn btn-light btn-sm">Voir</a>
+                <h5 class="card-title">Envoyer une réclamation</h5>
+                <p class="card-text">Soumettez les réclamations des utilisateurs.</p>
+                <a href="{{ path('app_ajouter_reclamation_user') }}" class="btn btn-light btn-sm"> Réclamer </a>
             </div>
         </div>
     </div>
 </div>
 
-<div class="row mt-5">
-    <div class="col-md-6 offset-md-3">
-        <div class="card">
-            <div class="card-header bg-dark text-white">
-                matériels disponibles
-            </div>
-            <div class="card-body text-center">
-                <canvas id="stockChart" width="300" height="300"></canvas>
-            </div>
-        </div>  
-    </div>
-</div>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="{{ asset('js/chart.js') }}"></script>
 
 
 {% endblock %}
