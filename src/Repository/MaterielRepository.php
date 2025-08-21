@@ -31,6 +31,15 @@ class MaterielRepository extends ServiceEntityRepository
         ;
     }
 
+
+    public function countMateriels(): int
+    {
+        return $this->createQueryBuilder('m')
+            ->select('COUNT(m.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 //    public function findOneBySomeField($value): ?Materiel
 //    {
 //        return $this->createQueryBuilder('m')

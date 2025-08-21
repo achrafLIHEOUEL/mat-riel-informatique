@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Les affectations{% endblock %}
+{% block title %}Mes affectations{% endblock %}
 
 {% block body %}
 <div class="main">
-    <h2 class="mb-4">📦 Les affectations de matériel</h2>
+    <h2 class="mb-4">📦 Mes affectations de matériel</h2>
 
     {% if affectations is empty %}
         <div class="alert alert-warning">Aucune affectation trouvée.</div>
@@ -12,20 +12,15 @@
         <table class="table table-bordered table-striped">
             <thead class="table-dark">
                 <tr>
-                    <th>Employé</th>
                     <th>Matériel affecté</th>
                     <th>Date d'affectation</th>
                     <th>Date de retour</th>
-                    
                     
                 </tr>
             </thead>
             <tbody>
                 {% for affectation in affectations %}
                     <tr>
-                        <td>
-                            {{ affectation.User.nom }} 
-                        </td>
                         <td>
                             {{ affectation.Materiel.type }} 
                         </td>
@@ -42,8 +37,6 @@
             </tbody>
         </table>
     {% endif %}
-     <a href="{{ path('app_new_affectation') }}" class="btn btn-primary">
-    Ajouter une affectation
-</a>
+    
 </div>
 {% endblock %}

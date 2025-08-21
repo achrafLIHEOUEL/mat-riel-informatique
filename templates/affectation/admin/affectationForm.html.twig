@@ -4,13 +4,38 @@
 
 {% block body %}
 <div class="main">
-    <h2>🛠️ Affecter un matériel à un employé</h2>
-    {{ form_start(form) }}
-        {{ form_row(form.User) }}
-        {{ form_row(form.Materiel) }}
-        {{ form_row(form.date_affectation) }}
-        {{ form_row(form.date_retour) }}
-        <button class="btn btn-success mt-3">Affecter</button>
-    {{ form_end(form) }}
+    <div class="header">
+        <h2><i class="fas fa-handshake me-2"></i>Affecter un matériel à un employé</h2>
+    </div>
+    
+    <div class="form-container">
+        {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_label(form.User, 'Employé', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.User, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            
+            <div class="form-group">
+                {{ form_label(form.Materiel, 'Matériel', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.Materiel, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form_label(form.date_affectation, 'Date d\'affectation', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.date_affectation, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                
+                <div class="form-group">
+                    {{ form_label(form.date_retour, 'Date de retour prévue', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.date_retour, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            
+            <button class="btn btn-success"><i class="fas fa-check-circle me-2"></i>Affecter le matériel</button>
+        {{ form_end(form) }}
+    </div>
 </div>
+
+
 {% endblock %}

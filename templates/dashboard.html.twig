@@ -11,12 +11,13 @@
 
     <h1>📊 Tableau de bord</h1>
     <div class="cards">
-        <div class="card"><h3>Total Matériels</h3><p>120</p></div>
-        <div class="card"><h3>En Stock</h3><p>95</p></div>
-        <div class="card"><h3>En Panne</h3><p>8</p></div>
-        <div class="card"><h3>Affectés</h3><p>17</p></div>
-        <div class="card"><h3>En Panne</h3><p>8</p></div>
-        <div class="card"><h3>Affectés</h3><p>17</p></div>
+        <div class="card"><h3>En Stock</h3><p>{{ totalMateriels }}</p></div>
+        <div class="card"><h3>Matériel Affectés</h3><p>{{ totalAffectations }}</p></div>
+        <div class="card"><h3>Employées</h3><p>{{ totalUsers }}</p></div>
+        <div class="card"><h3>Interventions effectuées</h3><p>{{ totalInterventions }}</p></div>
+        <div class="card"><h3>Alertes</h3><p>{{ totalAlertes }}</p></div>
+        <div class="card"><h3>Réclamations</h3><p>{{ totalReclamations }}</p></div>
+        
     </div>
 
     <canvas id="materielChart" style="margin-top: 30px; background:white; border-radius:10px; padding:15px;"></canvas>

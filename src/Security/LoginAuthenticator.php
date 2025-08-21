@@ -49,13 +49,19 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         return new RedirectResponse($targetPath);
     }
 
-    // Sinon, rediriger vers la page d'accueil
-    return new RedirectResponse($this->urlGenerator->generate('app_acceuil'));
-}
+    $user = $token->getUser();
 
+    if (in_array('ROLE_ADMIN', $user->getRoles())) {
+        return new RedirectResponse($this->urlGenerator->generate('app_dashboard'));
+    }
 
-    protected function getLoginUrl(Request $request): string
+    // Par défaut, rediriger vers l'accueil user
+    return new RedirectResponse($this->urlGenerator->generate('app_acceuil')); 
+       }
+       
+     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
 }
+

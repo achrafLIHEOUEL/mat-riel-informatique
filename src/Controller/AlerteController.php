@@ -58,7 +58,7 @@ final class AlerteController extends AbstractController
             $entityManager->flush();
 
     
-            return $this->redirectToRoute('app_alerte');
+            return $this->redirectToRoute('app_acceuil');
         }
 
 
