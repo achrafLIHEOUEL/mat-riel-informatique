@@ -13,6 +13,11 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+
 
 
 class RegistrationFormType extends AbstractType
@@ -20,10 +25,56 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-         ->add('nom', TextType::class)
-        ->add('prenom', TextType::class)
-        ->add('numeroTel', TextType::class)
-        ->add('email')
+           ->add('nom', TextType::class, [
+                'label' => 'Nom complet',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Le nom est obligatoire.',
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Le nom doit contenir au moins {{ limit }} caractères',
+                    ]),
+                ],
+            ])
+          ->add('prenom', TextType::class, [
+                'label' => 'Nom complet',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Le prénom est obligatoire.',
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Le prénom doit contenir au moins {{ limit }} caractères',
+                    ]),
+                ],
+            ])
+        ->add('numeroTel', TelType::class, [
+        'label' => 'Numéro de téléphone',
+        'constraints' => [
+            new NotBlank([
+                'message' => 'Le numéro de téléphone est obligatoire.',
+            ]),
+            new Length([
+                'min' => 8,
+                'minMessage' => 'Le numéro de téléphone doit contenir au minimum {{ limit }} chiffres.',
+            ]),
+            new Regex([
+                'pattern' => '/^[0-9]+$/',
+                'message' => 'Le numéro de téléphone ne doit contenir que des chiffres.',
+            ]),]])
+        ->add('email', EmailType::class, [
+                'label' => 'Adresse email',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'L’email est obligatoire.',
+                    ]),
+                    new Email([
+                        'message' => 'Veuillez entrer une adresse email valide.',
+                    ]),
+                    
+                ],
+            ])
         ->add('roles', ChoiceType::class, [
         'label' => 'Rôle',
         'choices' => [
@@ -44,8 +95,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
+               
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [

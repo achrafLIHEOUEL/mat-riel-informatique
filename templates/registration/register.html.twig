@@ -19,6 +19,7 @@
             <label class="col-sm-4 col-form-label">Nom</label>
             <div class="col-sm-8">
                 {{ form_widget(registrationForm.nom, {'attr': {'class': 'form-control'}}) }}
+                 {{ form_errors(registrationForm.nom) }}
             </div>
         </div>
 
@@ -26,6 +27,7 @@
             <label class="col-sm-4 col-form-label">Prénom</label>
             <div class="col-sm-8">
                 {{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control'}}) }}
+                 {{ form_errors(registrationForm.prenom) }}
             </div>
         </div>
 
@@ -33,6 +35,7 @@
             <label class="col-sm-4 col-form-label">Téléphone</label>
             <div class="col-sm-8">
                 {{ form_widget(registrationForm.numeroTel, {'attr': {'class': 'form-control'}}) }}
+                 {{ form_errors(registrationForm.numeroTel) }}
             </div>
         </div>
 
@@ -40,6 +43,7 @@
             <label class="col-sm-4 col-form-label">Email</label>
             <div class="col-sm-8">
                 {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                 {{ form_errors(registrationForm.email) }}
             </div>
         </div>
 
@@ -47,6 +51,7 @@
             <label class="col-sm-4 col-form-label">Mot de passe</label>
             <div class="col-sm-8">
                 {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                 {{ form_errors(registrationForm.plainPassword) }}
             </div>
         </div>
 

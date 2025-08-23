@@ -6,18 +6,60 @@ use App\Entity\Intervention;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\IsTrue;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
+
+
 
 class InterventionFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('typeIntervention')
-            ->add('description')
-            ->add('date_intervention')
-            ->add('effectue_par')
-        ;
-    }
+       $builder
+        ->add('typeIntervention', TextType::class, [
+            'label' => 'Type d\'intervention',
+            'constraints' => [
+                new NotBlank(['message' => 'Le type d\'intervention est obligatoire.']),
+                new Length([
+                    'min' => 6,
+                    'minMessage' => 'Le type doit comporter au moins {{ limit }} caractères.',
+                ]),
+            ],
+        ])
+        ->add('description', TextType::class, [
+            'label' => 'Description',
+            'constraints' => [
+                new NotBlank(['message' => 'La description est obligatoire.']),
+                new Length([
+                    'min' => 10,
+                    'minMessage' => 'La description doit comporter au moins {{ limit }} caractères.',
+                ]),
+            ],
+        ])
+        ->add('date_intervention', DateType::class, [
+            'label' => 'Date d\'intervention',
+            'widget' => 'single_text', // pour utiliser un datepicker HTML5
+            'constraints' => [
+                new NotBlank(['message' => 'La date d\'intervention est obligatoire.']),
+            ],
+        ])
+        ->add('effectue_par', TextType::class, [
+            'label' => 'Effectué par',
+            'constraints' => [
+                new NotBlank(['message' => 'Ce champ est obligatoire.']),
+                new Length([
+                    'max' => 50,
+                    'maxMessage' => 'Le nom ne doit pas dépasser {{ limit }} caractères.',
+                ]),
+            ],
+        ])
+    ;
+}
 
     public function configureOptions(OptionsResolver $resolver): void
     {

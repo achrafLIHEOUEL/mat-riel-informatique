@@ -21,6 +21,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
+    #[Assert\NotBlank(message: "L'email est obligatoire.")]
+    #[Assert\Email(message: "Veuillez entrer un email valide.")]
     private ?string $email = null;
 
     /**
@@ -33,18 +35,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Le mot de passe est obligatoire.")]
+    #[Assert\Length(min: 6 , minMessage: "Le mot de passe doit contenir au moins 6 caractères." )]
     private ?string $password = null;
 
     #[ORM\Column]
     private bool $isVerified = false;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 6 , minMessage: "Le nom doit contenir au moins 6 caractères." )]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 6 , minMessage: "Le prénom doit contenir au moins 6 caractères." )]
     private ?string $prenom = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Le numéro de téléphone est obligatoire.")]
+    #[Assert\Regex(
+        pattern: "/^\+?[0-9]{8,15}$/",
+        message: "Veuillez entrer un numéro de téléphone valide ."
+    )]
     private ?int $numeroTel = null;
 
     /**
