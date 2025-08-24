@@ -21,13 +21,22 @@ class MaterielFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-             ->add('type', TextType::class, [
-        'label' => 'type',
-        'constraints' => [
-            new NotBlank(['message' => 'Le type est obligatoire.']),
-        ],
-        'attr' => ['class' => 'form-control', 'placeholder' => 'Ex: PC']
-    ])
+           ->add('type', ChoiceType::class, [
+            'label' => 'type',
+            'choices' => [
+                'Pc poste' => 'pc poste',
+                'Pc portable' => 'pc portable',
+                'Imprimante' => 'imprimante',
+                'Scanner' => 'scanner',
+                'Serveur' => 'serveur',
+                'Routeur' => 'routeur',
+                'Téléphone' => 'telephone',
+            ],
+            'placeholder' => 'Choisir un type',
+            'constraints' => [
+                new NotBlank(['message' => 'Veuillez sélectionner une type.']),
+            ],
+        ])
            ->add('marque', TextType::class, [
         'label' => 'Marque',
         'constraints' => [

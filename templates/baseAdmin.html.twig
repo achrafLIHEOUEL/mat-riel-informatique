@@ -16,7 +16,7 @@
         <div class="sidebar">
             <h2>Parc Informatique</h2>
             <a href="{{ path('app_dashboard') }}"><i class="fas fa-tachometer-alt"></i> Tableau de bord </a>
-            <a href="{{ path('app_profile') }}"><i class="fas fa-user-circle"></i> Profile </a>
+            <a href="{{ path('app_profile_admin') }}"><i class="fas fa-user-circle"></i> Profile </a>
             <a href="{{ path('app_utilisateur') }}"><i class="fas fa-user"></i> Employées </a>
             <a href="{{ path('app_materiels') }}"><i class="fas fa-dolly"></i> Stock </a>
             <a href="{{ path('app_affectation') }}"><i class="fas fa-share-square"></i> Affectations </a>
@@ -36,8 +36,7 @@
     </div>
 
     {% block javascripts %}
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="{{ asset('js/baseAdmin.js') }}"></script>
+    
     {% endblock %}
 </body>
 </html>

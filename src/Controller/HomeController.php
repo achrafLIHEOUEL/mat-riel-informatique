@@ -35,12 +35,22 @@ class HomeController extends AbstractController
     AlerteRepository $alerteRepository,
     ReclamationRepository $reclamationRepository ): Response
     {
+    //cards
       $totalMateriels = $materielRepository->countMateriels();
       $totalAffectations = $affectationRepository->countAffectations();
       $totalUsers = $userRepository->countUsers();
       $totalInterventions = $interventionRepository->countInterventions();
       $totalAlertes = $alerteRepository->countAlertes();
       $totalReclamations = $reclamationRepository->countReclamations();
+
+    //chart.js
+    $pc_poste = $materielRepository->count(['type' => 'pc poste']);
+    $pc_portable = $materielRepository->count(['type' => 'pc portable']);
+    $imprimante = $materielRepository->count(['type' => 'imprimante']);
+    $scanner = $materielRepository->count(['type' => 'scanner']);
+    $serveur = $materielRepository->count(['type' => 'serveur']);
+    $telephone = $materielRepository->count(['type' => 'telephone']);
+    $routeur = $materielRepository->count(['type' => 'routeur']);
 
 
         return $this->render('dashboard.html.twig' , [
@@ -50,6 +60,8 @@ class HomeController extends AbstractController
         'totalInterventions' => $totalInterventions,
         'totalAlertes' => $totalAlertes,
         'totalReclamations' => $totalReclamations,
+         'labels' => ['PC poste', 'pc portable', 'Imprimante', 'Scanner' , 'Serveur' , 'Téléphone', 'Routeur'],
+         'data' => [$pc_poste, $pc_portable, $imprimante, $scanner, $serveur, $telephone , $routeur],
     ]);
     }
 
@@ -61,6 +73,17 @@ public function profil(UserRepository $userRepository): Response
     $users = $userRepository->findBy(['id' => $user]);
 
     return $this->render('utilisateur/profile.html.twig', [
+        'users' => $users
+    ]);
+}
+
+#[Route('admin/profile', name: 'app_profile_admin')]
+public function profilAdmin(UserRepository $userRepository): Response
+{
+    $user = $this->getUser(); 
+    $users = $userRepository->findBy(['id' => $user]);
+
+    return $this->render('utilisateur/admin/profileAdmin.html.twig', [
         'users' => $users
     ]);
 }

@@ -1,30 +1,25 @@
-const ctx = document.getElementById('stockChart').getContext('2d');
+document.addEventListener("DOMContentLoaded", function() {
+    const ctx = document.getElementById('materielChart').getContext('2d');
 
-const stockChart = new Chart(ctx, {
-    type: 'doughnut', // ou 'pie'
-    data: {
-        labels: ['PC', 'Imprimante', 'Serveur', 'Scanner'],
-        datasets: [{
-            label: 'Matériels disponibles',
-            data: [12, 8, 4, 6], // À remplacer par les vraies valeurs dynamiques
-            backgroundColor: [
-                '#007bff', // Bleu pour PC
-                '#28a745', // Vert pour imprimante
-                '#ffc107', // Jaune pour serveur
-                '#dc3545'  // Rouge pour scanner
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'bottom'
-            },
-            tooltip: {
-                enabled: true
+    const labels = JSON.parse(document.getElementById('materielChart').dataset.labels);
+    const data = JSON.parse(document.getElementById('materielChart').dataset.values);
+
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'disponibilité',
+                data: data,
+                backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545' , '#2bf8eeff' , '#ad08faff' , '#e586deff'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom' }
             }
         }
-    }
+    });
 });
